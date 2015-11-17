@@ -1,0 +1,51 @@
+{% extends "master.html" %}
+
+{% block titulo %}
+	<title>Google Maps</title>
+{% endblock titulo %}
+
+{% block header %}
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+	<script >
+		function initialize() {
+	  var myLatlng = new google.maps.LatLng(-2.524406, -78.929772);
+	  var mapOptions = {
+	    zoom: 6,
+	    center: myLatlng
+	  }
+	  var map = new google.maps.Map(document.getElementById('map-canvas2'), mapOptions);
+		{% for hotel in hoteles %}
+
+	  	var marcador = new google.maps.LatLng('{{hotel.latitud}}', '{{hotel.longitud}}');
+	  	var marker = new google.maps.Marker({
+		      position: marcador,
+		      map: map,
+		      title: '{{hotel.nombre_hotel}}'
+		  });
+	      google.maps.event.addListener(marker, 'click', function(){
+	            var popup = new google.maps.InfoWindow();
+	            var note = '{{hotel.nombre_hotel}}. {{hotel.descripcion_hotel}}';
+	            popup.setContent(note);
+	            popup.open(map, this);
+	      })
+	
+		{% endfor %}							
+ 
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+{% endblock %}
+	
+{% block content %}			
+		<h3>Ubicacion de todos los hoteles en  Google Maps</h3>
+		<section id="map-canvas2"></section>
+			
+{% endblock content %}
+
+
+
+{% block footer %}	
+{% endblock footer %}
+
+

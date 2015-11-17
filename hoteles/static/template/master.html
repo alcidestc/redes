@@ -1,0 +1,173 @@
+{% load staticfiles%}
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    	{% block titulo %}    		
+    	{% endblock titulo %}
+    	
+    	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+
+    	<link href="{% static "template/css/bootstrap.min.css" %}" rel="stylesheet">
+    	<link href="{% static "template/css/style.css" %}" rel="stylesheet">
+
+
+
+    	{% block header %}    		
+    	{% endblock header %}
+   
+
+  	</head>
+  	<body style='padding-bottom: 5em'>
+  		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="navbar navbar-default" role="navigation">
+						<div class="navbar-header">
+							 
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+							</button> <span class="glyphicon glyphicon-home" aria-hidden="true"></span><a class="navbar-brand" href="/">Inicio</a>
+						</div>
+						
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li class="dropdown">
+									 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hoteles<strong class="caret"></strong></a>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="{% url 'hotelesEstrellas' 1 %}">1 Estrellas</a>
+										</li>
+										<li>
+											<a href="{% url 'hotelesEstrellas' 2 %}">2 Estrellas</a>
+										</li>
+										<li>
+											<a href="{% url 'hotelesEstrellas' 3 %}">3 Estrellas</a>
+										</li>
+										<li>
+											<a href="{% url 'hotelesEstrellas' 4 %}">4 Estrellas</a>
+										</li>
+										<li>
+											<a href="{% url 'hotelesEstrellas' 5 %}">5 Estrellas</a>
+										</li>
+
+									</ul>
+								</li>
+								
+
+
+								<li class="dropdown">
+									<a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#" href="/page.html">Regiones<span class="caret"></span></a>
+            													
+    								<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+							              <li class="dropdown-submenu">
+							                <a tabindex="-1" href="{% url 'provincias' 'Costa' %}">Costa</a>
+							                <ul class="dropdown-menu">
+							                  {% for ciudad in  cities %}
+
+							                	{% ifequal ciudad.id_provincia.region|cut:" " 'Costa'  %}
+							                		
+							                		<li><a tabindex="-1" href="{% url 'hoteles' ciudad.id_ciudad %}">	{{ciudad.nombre_ciudad}}</a>							                		
+							                	{% endifequal %}
+							                	{% endfor %}            
+							                </ul>
+							              </li>
+
+							              <li class="dropdown-submenu">
+							                <a tabindex="-1" href="{% url 'provincias' 'Sierra' %}">Sierra</a>
+							                <ul class="dropdown-menu">
+							                	{% for ciudad in  cities %}
+
+							                	{% ifequal ciudad.id_provincia.region|cut:" " 'Sierra'  %}
+							                		
+							                		<li><a tabindex="-1" href="{% url 'hoteles' ciudad.id_ciudad %}">	{{ciudad.nombre_ciudad}}</a>							                		
+							                	{% endifequal %}
+							                	{% endfor %}
+							                  
+							                  </li>             
+							                </ul>
+							              </li>
+
+							              <li class="dropdown-submenu">
+							                <a tabindex="-1" href="{% url 'provincias' 'Oriente' %}">Oriente</a>
+							                <ul class="dropdown-menu">
+							                  {% for ciudad in  cities %}
+
+							                	{% ifequal ciudad.id_provincia.region|cut:" " 'Oriente'  %}
+							                		
+							                		<li><a tabindex="-1" href="{% url 'hoteles' ciudad.id_ciudad %}">	{{ciudad.nombre_ciudad}}</a>							                		
+							                	{% endifequal %}
+							                	{% endfor %}            
+							                </ul>
+							              </li>
+            						</ul>
+								</li>
+
+								
+							</ul>
+							
+							<ul class="nav navbar-nav navbar-right">								
+								<li>
+									<a href="/mapas">Maps</a>
+								</li>
+							</ul>
+						</div>
+						
+					</nav>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="page-header">
+						<h1>
+							Hoteles del Ecuador <small>Guia de Hoteles y Hostales del Ecuador</small>
+						</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!--<div class="col-md-2">
+					<ul class="nav nav-stacked nav-pills">
+						<li class="active">
+							<a href="/">Inicio</a>
+						</li>
+						
+						{% for city in ciudades %}		
+							<li>
+								<a href="{% url 'ciudades' city.id_ciudad %}">{{ city.nombre_ciudad }}</a>
+							</li>
+						{% endfor %}
+						
+				</div>-->
+				
+				<div class="col-md-8 col-md-offset-2">
+					{# contenedor #}
+
+					{% block content %}
+					{% endblock %}					
+					
+				</div>
+				
+			</div>
+		
+		<footer class="navbar navbar-inverse navbar-fixed-bottom">
+			<div class="container">				
+				<p class='text-center'>Universidad Tecnica Particular de Loja</p>			
+							                  
+
+				{% block footer %}					
+				{% endblock footer %}
+			</div>
+		</footer>  
+
+    	<script src="{% static "template/js/bootstrap.min.js" %}"></script>
+    	<script src="{% static "template/js/scripts.js" %}"></script>
+
+
+  	</body>
+</html>

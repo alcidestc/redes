@@ -1,0 +1,117 @@
+
+{% extends "master.html" %}
+
+{% block titulo %}
+	<title>Hoteles del Ecuador</title>
+{% endblock titulo %}
+
+{% block header %}	
+{% endblock header %}
+
+{% block content %}	
+	<div class="carousel slide" id="carousel-565956">
+		<ol class="carousel-indicators">
+			<li class="active" data-slide-to="0" data-target="#carousel-565956">
+			</li>
+			<li data-slide-to="1" data-target="#carousel-565956">
+			</li>
+			<li data-slide-to="2" data-target="#carousel-565956">
+			</li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="item active">
+				<img alt="Carousel Bootstrap First" width="1600" src="http://www.hotelesecuador.com.ec/imagenes/hoteles/grandes/Alameda2g.jpg"/>
+				<div class="carousel-caption">
+					<h4>
+						Hoteles del Ecuador
+					</h4>
+					<p>						
+					</p>
+				</div>
+			</div>
+			<div class="item">
+				<img alt="Carousel Bootstrap Second" src="http://www.hotelesecuador.com.ec/imagenes/hoteles/grandes/Alameda5g.jpg" width='1600' />
+				<div class="carousel-caption">
+					<h4>
+						Hoteles del Ecuador
+					</h4>
+						<p>							
+						</p>
+				</div>
+			</div>
+			<div class="item">
+				<img alt="Carousel Bootstrap Third" width='1600' src="http://www.hotelesecuador.com.ec/imagenes/hoteles/grandes/Alameda3g.jpg" />
+					<div class="carousel-caption">
+						<h4>
+							Hoteles del Ecuador
+						</h4>
+						<p>
+						</p>
+					</div>
+			</div>
+		</div> <a class="left carousel-control" href="#carousel-565956" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-565956" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>	
+	<br>
+	<div class="row">
+		<div class="col-md-6">
+			<a href="{% url 'provincias' 'Costa' %}">
+			<img src="{{STATIC_URL}}template/images/costa.jpg"  class='img-responsive'></a>
+			<h3>
+				Costa
+			</h3>
+			<p class='text-justify'>
+				Conformada por una franja alargada y estrecha a lo largo de la costa del pacífico ecuatoriano, esta región podría definirse como una combinación de balnearios turísticos, manglares, marismas, estuarios, y pequeñas poblaciones pesqueras.
+			</p>
+				<a href="{% url 'provincias' 'Costa' %}">Ir a Hoteles</a>
+
+		</div>
+		<div class="col-md-6">
+			<div>
+				<a href="{% url 'provincias' 'Sierra' %}">
+				<img src="{{STATIC_URL}}template/images/sierra.jpg" class='img-responsive'></a>
+				<h3>
+					Sierra
+				</h3>
+				<p class='text-justify'>
+					La Sierra es la región más visitada en todo el Ecuador. Se podría decir que es el Ecuador por antonomasia. Es difícil no enamorarse a primera vista de esta región con sus páramos, sus nevados, sus ruinas incas, sus mercados artesanales, su aun floreciente cultura indígena y por encima de todo ello: sus majestuosos cóndores.
+				</p>
+					<a href="{% url 'provincias' 'Sierra' %}">Ir a Hoteles</a>
+			
+		</div>
+			
+		</div>
+		<div class="col-md-6" style=""> 
+			<a href="{% url 'provincias' 'Oriente' %}">
+			<img src="{{STATIC_URL}}template/images/oriente.jpg"  class='img-responsive'></a>
+			<h3>
+				Oriente
+			</h3>
+			<p class='text-justify'>
+				La selva amazónica es, sin lugar a dudas, el más alto logro de la Creación. El Oriente ecuatoriano, también conocido como Amazonía, es una región bendecida con algunas de las áreas más prístinas y biodiversas del planeta. Se podría comparar con una impresionante sinfonía de vida al natural. 
+			</p>
+				<a href="{% url 'provincias' 'Oriente' %}">Ir a Hoteles</a>
+			
+		</div>
+
+		<div class="col-md-6" style=""> 
+			<a href="{% url 'provincias' 'Insular' %}">
+			<img src="{{STATIC_URL}}template/images/insular.jpg"  class='img-responsive'></a>
+			<h3>
+				Insular o Galapagos
+			</h3>
+			<p class='text-justify'>
+				Las Islas Galapagos son en verdad únicas en el mundo. Todas las Islas de este Archipiélago son maravillosas y misteriosas.
+				Se encuentran situadas en medio del Océano Pacífico. Están aproximadamente a mil kilómetros hacia al Oeste de Ecuador, país que se localiza al Noroeste de Sud América. 
+			</p>
+				<a href="{% url 'provincias' 'Insular' %}">Ir a Hoteles</a>
+			
+		</div>
+	</div>
+						
+
+{% endblock content %}
+
+{% block footer %}	
+{% endblock footer %}
+
+

@@ -1,0 +1,43 @@
+{% extends "master.html" %}
+
+{% block titulo %}
+	<title>Hoteles  en la ciudad de {{ciudad.nombre_ciudad}}</title>
+{% endblock titulo %}
+
+{% block header %}	
+{% endblock header %}
+
+{% block content %}
+		<h3>
+			Ciudad de  {{ ciudad.nombre_ciudad }}
+		</h3>		
+	{% for  hotel in  hoteles %}
+
+		<div class="row">
+			<div class="col-md-5 col-md-offset-1">
+				<img src="{{hotel.foto_hotel}}" class='img-responsive' >				
+
+			</div>
+			<div class="col-md-5 ">
+			<h4><strong>{{hotel.nombre_hotel}}</strong></h4>
+			<p>
+				<strong>Ubicacion: </strong>{{hotel.id_ciudad.nombre_ciudad}}
+			</p>
+			<p class="text-justify">
+				{{hotel.descripcion_hotel}}
+			</p>
+			<p class='text-right'><a href="{% url 'hotel' hotel.id_hotel %}">Mas informacion...</a></p>
+			<br>
+			</div>		
+		</div>
+			<hr>
+	{% endfor %}
+
+
+		
+{% endblock content %}
+
+{% block footer %}	
+{% endblock footer %}
+
+

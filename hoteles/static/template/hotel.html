@@ -1,0 +1,153 @@
+{% extends "master.html" %}
+{% load staticfiles%}
+
+{% block titulo %}
+	<title>{{hotel.nombre_hotel}}</title>
+{% endblock titulo %}
+
+{% block header %}
+
+	<script type="" src="{% static "template/js/ekko-lightbox.min.js"%}" ></script>
+    <link href="{% static "template/css/ekko-lightbox.min.css"%}" rel="stylesheet">   	
+
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+	<script >
+		function initialize() {
+	  var myLatlng = new google.maps.LatLng('{{hotel.latitud}}', '{{hotel.longitud}}');
+	  var mapOptions = {
+	    zoom: 13,
+	    center: myLatlng
+	  }
+	  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);	  
+	  
+	  	var marcador = new google.maps.LatLng('{{hotel.latitud}}', '{{hotel.longitud}}');
+	  	var marker = new google.maps.Marker({
+		      position: marcador,
+		      map: map,
+		      title: '{{hotel.nombre_hotel}}'
+		  });
+	      google.maps.event.addListener(marker, 'click', function(){
+	            var popup = new google.maps.InfoWindow();
+	            var note = '<div class="col-md-12">'+
+							'<h5>Tarifas Habitaciones</h5>'+
+							'<table class="table table-bordered table-hover ">'+
+						'<thead>'+
+							'<tr>'+
+								'<th>'+
+									'Tipo de Habitacion'+
+								'</th>'+
+								'<th>'+
+									'Tarifa Sencilla'+
+								'</th>'+
+								'<th>'+
+									'Tarifa Doble'+
+								'</th>'+
+								'<th>'+
+									'Tarifa Triple'+
+								'</th>'+
+							'</tr>'+
+						'</thead>'+
+						'<tbody>'+
+							'{% for rooms in habitaciones %}'+
+								'<tr>'+
+								'<td>'+
+									'{{rooms.tipo_habitacion}}'+
+								'</td>'+
+								'<td>'+
+									'{{rooms.tarifa_sencilla}}'+
+								'</td>'+
+								'<td>'+
+									'{{rooms.tarifa_doble}}'+
+								'</td>'+
+								'<td>'+
+									'{{rooms.tarifa_triple}}'+
+								'</td>'+
+							'</tr>						'+
+							'{% endfor %}'+
+						'</tbody>'+
+					'</table>';
+	            popup.setContent(note);
+	            popup.open(map, this);
+	      })
+	  
+ 
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+
+{% endblock header %}
+
+	
+
+{% block content %}		
+		
+			<h3>
+				{{hotel.nombre_hotel}}
+			</h3>
+
+
+			<div class="row">											
+						<div class="col-md-12">
+							<h4>Location</h4>
+							<section id="map-canvas"></section>							
+						</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-6">
+					<img alt="" src='{{hotel.foto_hotel}}' class='img-responsive'>
+				</div>
+				<div class="col-md-6 text-justify">
+					<p class="">
+						<strong>Ubicacion Hotel: </strong>{{hotel.ubicacion_hotel}}<br>
+
+						<strong>Direccion Hotel: </strong>{{hotel.direccion_hotel}}<br>
+
+						<strong>Web Hotel: </strong><a href="{{hotel.web_hotel}}">{{hotel.web_hotel}}</a><br>
+
+						<strong>Clasificacion Hotel: </strong>{{hotel.clasificacion_hotel}} estrellas<br>
+
+
+						<strong>Tarjetas de Credito: </strong>{{hotel.tarjeta_hotel}} <br>	
+
+						<strong>Telefonos: </strong> 
+						{% for contacto in contactos %}
+								{{contacto.telefono_hotel}}
+						{% endfor %}<br>
+
+						<strong>Fax Hotel: </strong> 
+						{% for contacto in contactos %}
+								{{contacto.fax_hotel}}
+						{% endfor %}<br>		
+
+						<strong>Correo Hotel: </strong> 
+						{% for contacto in contactos %}
+								<a href="mailto:{{contacto.correo_hotel}}">{{contacto.correo_hotel}}</a>
+						{% endfor %}<br>	
+
+					</p>
+				</div>
+			</div>
+			<hr>
+
+			<div class="row">
+				<div class="col-md-12">
+					<h4>Servicios</h4>
+					<p>
+						{% for service in servicios %}
+							{{service.id_servicio.nombre_servicio}}, 
+						{% endfor %}
+					</p>
+				</div>
+			</div>
+				
+
+{% endblock content %}
+
+
+
+{% block footer %}	
+{% endblock footer %}
+
+

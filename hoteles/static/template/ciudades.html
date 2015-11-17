@@ -1,0 +1,39 @@
+{% extends "master.html" %}
+
+{% block titulo %}
+	<title>Hoteles en {{provincia.nombre_provincia}}</title>
+{% endblock titulo %}
+
+{% block header %}	
+{% endblock header %}
+
+{% block content %}		
+		<h2>Provincia de {{provincia.nombre_provincia}}</h2>
+
+		{% for  city in  ciudades %}
+			
+			<h3>
+				Hoteles en {{ city.nombre_ciudad }}
+			</h3>
+
+			{% for hotels in hoteles %}
+
+				{% ifequal hotels.id_ciudad.nombre_ciudad city.nombre_ciudad  %} 	
+					<h4><a href="{% url 'hotel' hotels.id_hotel %}">{{hotels.nombre_hotel}}</a></h4>	
+				{% endifequal %}	
+			{% endfor %}
+
+			
+			
+			
+			<hr>
+		{% endfor %}
+							
+			
+
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}
+
+

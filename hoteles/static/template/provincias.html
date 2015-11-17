@@ -1,0 +1,40 @@
+{% extends "master.html" %}
+
+{% block titulo %}
+	<title>Hoteles  en la Region {{region}}</title>
+{% endblock titulo %}
+
+{% block header %}	
+{% endblock header %}
+
+{% block content %}
+	{% for  prov in  provincias %}
+		<h3>
+			Provincia de {{ prov.nombre_provincia }}
+		</h3>		
+
+		<div class="row">
+			<div class="col-md-5 col-md-offset-1">
+				<img src="{{prov.foto_provincia}}" class='img-responsive' >				
+
+			</div>
+			<div class="col-md-5 ">
+			<p class="text-justify">
+				{{prov.descripcion_provincia}}
+			</p>
+			<p class='text-right'><a href="{% url 'ciudades' prov.id_provincia %}">Ver Ciudades</a></p>
+			<br>
+			<hr>
+			</div>
+		
+		</div>
+	{% endfor %}
+
+
+		
+{% endblock content %}
+
+{% block footer %}	
+{% endblock footer %}
+
+
